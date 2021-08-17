@@ -1,0 +1,38 @@
+{
+    "name": "candocker/shop",
+    "type": "project",
+    "keywords": [
+        "php",
+        "application",
+        "shop",
+        "resource"
+    ],
+    "description": "A application of shop",
+    "license": "MIT",
+    "require": {
+        "php": "^7.3.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "ModuleShop\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ModuleShop\\Test\\": "./test/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": [],
+    "scripts": {
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    }
+}

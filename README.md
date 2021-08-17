@@ -1,2 +1,2 @@
 # shop
-The shop module
+The module shop wiki
