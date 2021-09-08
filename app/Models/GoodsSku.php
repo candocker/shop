@@ -6,7 +6,7 @@ namespace ModuleShop\Models;
 
 class GoodsSku extends AbstractModel
 {
-    //protected $table = '';
+    protected $table = 'goods_sku';
     protected $fillable = ['name'];
 
 }

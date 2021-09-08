@@ -9,6 +9,7 @@ class Goods extends AbstractResource
     {
         $skuInfos = $this->resource->skuInfos;
         $skuValues = $this->_formatSkuValues($skuInfos);
+        //echo get_class($this->resource->categoryCode);exit();
         return [
             //'goods' => $this->getRepository()->getFormatShowFields('view', $this->resource, $this->getSimpleResult()),
             'skuElems' => $this->resource->categoryCode->type->getSkuElems($skuValues),
@@ -21,7 +22,7 @@ class Goods extends AbstractResource
     protected function _formatSkuValues($skuInfos)
     {
         $datas = [];
-        $skuFields = $this->getRepository()->resource->getObject('repository', 'attribute')->getKeyValues('sku_field');
+        $skuFields = $this->getRepository()->getRepositoryObj('attribute')->getKeyValues('sku_field');
         foreach ($skuInfos as $skuInfo) {
             foreach ($skuFields as $skuField) {
                 $datas[$skuField][] = $skuInfo[$skuField];

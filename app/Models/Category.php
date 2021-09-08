@@ -12,4 +12,8 @@ class Category extends AbstractModel
     public $incrementing = false;
     public $timestamps = false;
 
+    public function type()
+    {
+        return $this->hasOne(Type::class, 'code', 'type_code');
+    }
 }
