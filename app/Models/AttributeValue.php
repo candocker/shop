@@ -6,7 +6,7 @@ namespace ModuleShop\Models;
 
 class AttributeValue extends AbstractModel
 {
-    //protected $table = '';
+    protected $table = 'attribute_value';
     protected $fillable = ['name'];
 
 }

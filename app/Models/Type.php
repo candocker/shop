@@ -6,11 +6,41 @@ namespace ModuleShop\Models;
 
 class Type extends AbstractModel
 {
-    //protected $table = '';
+    protected $table = 'type';
     public $incrementing = false;
     protected $primaryKey = 'code';
     //protected $fillable = ['name'];
     public $timestamps = false;
+
+    protected function getAttributeValues($attribute)
+    {
+        $values = $attribute->attributeValues;
+        $values = $values->sortByDesc('orderlist');
+        $datas = [];
+        foreach ($values->toArray() as $value) {
+            $datas[$value['id'] . '_sku'] = [
+                'name' => $value['name'],
+                'value' => $value['value'],
+                'orderlist' => $value['orderlist'],
+                'mark' => $value['mark'],
+            ];
+        }
+        return $datas;
+    }
+
+    public function attributeDatas()
+    {
+        return $this->hasMany(Attribute::class, 'type_code', 'code');
+    }
+
+    public function canDelete()
+    {
+        $exist = $this->getModelObj('category')->where(['type_code' => $this->code])->first();
+        if ($exist) {
+            return false;
+        }
+        return true;
+    }
 
     public function getSkuElems($skuValues = null)
     {
@@ -50,26 +80,5 @@ class Type extends AbstractModel
             ];
         }
         return $datas;
-    }
-
-    protected function getAttributeValues($attribute)
-    {
-        $values = $attribute->attributeValues;
-        $values = $values->sortByDesc('orderlist');
-        $datas = [];
-        foreach ($values->toArray() as $value) {
-            $datas[$value['id'] . '_sku'] = [
-                'name' => $value['name'],
-                'value' => $value['value'],
-                'orderlist' => $value['orderlist'],
-                'mark' => $value['mark'],
-            ];
-        }
-        return $datas;
-    }
-
-    public function attributeDatas()
-    {
-        return $this->hasMany(Attribute::class, 'type_code', 'code');
     }
 }

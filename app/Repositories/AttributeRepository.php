@@ -94,7 +94,7 @@ class AttributeRepository extends AbstractRepository
             'name' => '添加属性值',
             'type' => 'popForm',
             'resource' => 'attributeValue',
-            'app' => $this->config->get('app_code'),
+            'app' => $this->getAppcode(),
             'params' => ['attribute_id' => $model->id],
         ];
 
@@ -102,7 +102,7 @@ class AttributeRepository extends AbstractRepository
             'name' => '属性值列表',
             'type' => 'popTable',
             'resource' => 'attributeValue',
-            'app' => $this->config->get('app_code'),
+            'app' => $this->getAppcode(),
             'params' => ['attribute_id' => $model->id],
         ];
         return [$add, $list];
